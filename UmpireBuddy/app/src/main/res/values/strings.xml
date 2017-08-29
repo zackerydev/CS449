@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">UmpireBuddy</string>
+    <string name="ball">Ball</string>
+    <string name="strike">Strike</string>
 </resources>
