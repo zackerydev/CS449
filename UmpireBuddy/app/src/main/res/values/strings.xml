@@ -1,5 +1,9 @@
 <resources>
     <string name="app_name">UmpireBuddy</string>
-    <string name="ball">Ball</string>
-    <string name="strike">Strike</string>
+    <string name="ball_display">Ball: \t \t</string>
+    <string name="strike_display">Strike: \t \t</string>
+    <string name="ball_btn_str">Ball</string>
+    <string name="strike_btn_str">Strike</string>
+    <string name="strikeout_toast">You\'re Out!</string>
+    <string name="walk_toast">You\'ve been walked!</string>
 </resources>
