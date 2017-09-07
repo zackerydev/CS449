@@ -6,4 +6,8 @@
     <string name="strike_btn_str">Strike</string>
     <string name="strikeout_toast">You\'re Out!</string>
     <string name="walk_toast">You\'ve been walked!</string>
+    <string name="restart">Restart</string>
+    <string name="about_data">Umpire Buddy was made by: Zackery Griesinger</string>
+    <string name="about">About</string>
+    <string name="out_display">Total Outs: \t</string>
 </resources>
