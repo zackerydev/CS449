@@ -10,4 +10,7 @@
     <string name="about_data">Umpire Buddy was made by: Zackery Griesinger</string>
     <string name="about">About</string>
     <string name="out_display">Total Outs: \t</string>
+    <string name="settings">Settings</string>
+    <string name="title_activity_settings">Settings</string>
+    <string name="audio_option">Turn on Text to Speech Assist:</string>
 </resources>

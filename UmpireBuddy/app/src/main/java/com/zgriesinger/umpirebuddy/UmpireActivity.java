@@ -2,6 +2,7 @@ package com.zgriesinger.umpirebuddy;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.speech.tts.TextToSpeech;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuInflater;
@@ -17,6 +18,9 @@ import org.w3c.dom.Text;
 public class UmpireActivity extends AppCompatActivity {
     private Button mStrikeButton;
     private Button mBallButton;
+
+
+
     public static final String MY_PREFS_NAME = "DataFile";
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -46,6 +50,12 @@ public class UmpireActivity extends AppCompatActivity {
 
         ballCount.setText("0");
         strikeCount.setText("0");
+
+        SharedPreferences.Editor editor = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE).edit();
+        editor.putString("balls", "0");
+        editor.putString("strikes", "0");
+        editor.apply();
+
     }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +70,11 @@ public class UmpireActivity extends AppCompatActivity {
         SharedPreferences countData = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
         String outs = countData.getString("outs", "0");
         outCount.setText(outs);
+        String balls = countData.getString("balls", "0");
+        ballCount.setText(balls);
+        String strikes = countData.getString("strikes", "0");
+        strikeCount.setText(strikes);
+
 
 
 
@@ -75,10 +90,22 @@ public class UmpireActivity extends AppCompatActivity {
                     //If less than 3 increment
                     ballInt++;
                     String newCount = Integer.toString(ballInt);
+                    SharedPreferences.Editor editor = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE).edit();
+                    editor.putString("balls", newCount);
+                    editor.apply();
                     ballCount.setText(newCount);
                 } else {
                     //Else toast the message
                     Toast.makeText(UmpireActivity.this, R.string.walk_toast, Toast.LENGTH_SHORT).show();
+                    SharedPreferences.Editor editor = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE).edit();
+                    SharedPreferences audio = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
+                    Boolean TTS = audio.getBoolean("audioOpt", false);
+                    if(TTS){
+
+                    }
+                    editor.putString("balls", "0");
+                    editor.putString("outs", "0");
+                    editor.apply();
                     ballCount.setText("0");
                     strikeCount.setText("0");
                 }
@@ -94,13 +121,23 @@ public class UmpireActivity extends AppCompatActivity {
                 if(strikeInt != 2){
                     strikeInt++;
                     String newCount = Integer.toString(strikeInt);
+                    SharedPreferences.Editor editor = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE).edit();
+                    editor.putString("strikes", newCount);
+                    editor.apply();
                     strikeCount.setText(newCount);
                 } else {
                     int outInt = Integer.parseInt((String) outCount.getText());
                     outInt++;
                     String newOuts = Integer.toString(outInt);
                     SharedPreferences.Editor editor = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE).edit();
+                    SharedPreferences audio = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
+                    Boolean TTS = audio.getBoolean("audioOpt", false);
+                    if(TTS){
+
+                    }
                     editor.putString("outs", newOuts);
+                    editor.putString("balls", "0");
+                    editor.putString("strikes", "0");
                     editor.apply();
                     outCount.setText(newOuts);
                     Toast.makeText(UmpireActivity.this, R.string.strikeout_toast, Toast.LENGTH_SHORT).show();
